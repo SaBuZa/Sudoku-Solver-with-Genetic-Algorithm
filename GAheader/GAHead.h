@@ -17,9 +17,10 @@ typedef unsigned long long ull;
 #define CROSSOVER_RATE 0.1
 #define REMAINING_INDIVIDUALS_SIZE 30
 #define CROSSOVER_INDIVIDUALS_SIZE 20
-#define MUTATED_INDIVIDUALS_SIZE 20
-#define FILLED_INDIVIDUALS_SIZE 30
+#define MUTATED_INDIVIDUALS_SIZE 30
+#define FILLED_INDIVIDUALS_SIZE 20
 #define LOCAL_STRUCK_TIMES 1000
+#define OLD_GEN_AFTER_RE_NUMS 1
 
 #define SUDOKU_ROW 9
 #define SUDOKU_COL 9
@@ -105,7 +106,7 @@ struct chromosome {
 			fitness += checkRow(i);
 			fitness += checkCol(i);
 			fitness += checkTable(i);
-			//fitness += checkUnset(i);
+			fitness += checkUnset(i);
 			fitness += checkIllegal(i);//check for invalid answer from the starting point (change constant value given by the task)
 		}
 	}
@@ -225,7 +226,7 @@ void execute() {
 		loopStill++;
 		if (loopStill > LOCAL_STRUCK_TIMES) {//IF GOT STRUCK ON LOCAL > LOCAL STRUCK TIMES -> RENEW ALL
 			printf("RE !\n");
-			reinitialize(5);
+			reinitialize(OLD_GEN_AFTER_RE_NUMS);
 			loopStill = 0;
 			continue;
 		}
