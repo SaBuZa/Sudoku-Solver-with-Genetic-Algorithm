@@ -1,0 +1,1 @@
+https://cs.stackexchange.com/questions/54828/how-to-avoid-getting-stuck-on-local-optimum-for-genetic-algorithms
